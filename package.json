@@ -1,7 +1,9 @@
 {
   "name": "gpt",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "author": "Shezhangzhang",
+  "description": "Deploy your private ChatGPT!",
   "scripts": {
     "dev": "next dev -p 3007",
     "build": "next build",
@@ -38,5 +40,10 @@
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.6",
     "tailwindcss": "^3.2.7"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shezhangzhang/chatgpt-react.git"
+  },
+  "homepage": "https://github.com/shezhangzhang/chatgpt-react"
 }
