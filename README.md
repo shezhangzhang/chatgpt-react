@@ -52,6 +52,8 @@ now, hit the deploy button, that's it! (You can bind your own domains later)
 
 You can create a password for each of your friends that represents their name, so that you can access Sentry and see each person's usage and any potential error events within Sentry. You can directly integrate Sentry through Vercel.
 
+![sentry](./sentry.png)
+
 ## Development
 
 install the dependencies:

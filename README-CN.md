@@ -50,6 +50,8 @@ Fork 此仓库。（请顺便点个 star :D）
 
 你可以给你的每个朋友象征他名字的密码，这样你可以接入 Sentry，并在 Sentry 中查看每个人的用量，以及其他可能出现的错误事件。你可以通过 vercel 直接接入 sentry。
 
+![sentry](./sentry.png)
+
 ## 开发
 
 安装依赖：
