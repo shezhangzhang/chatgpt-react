@@ -1,7 +1,6 @@
 {
   "name": "gpt",
   "version": "1.0.0",
-  "private": true,
   "author": "Shezhangzhang",
   "description": "Deploy your private ChatGPT!",
   "scripts": {
