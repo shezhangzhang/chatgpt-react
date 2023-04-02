@@ -7,6 +7,7 @@ export default function Login() {
   const [input, setInput] = useState("");
   const [isError, setIsError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
   const router = useRouter();
 
   async function handleLogin() {
@@ -14,6 +15,7 @@ export default function Login() {
 
     try {
       setLoading(true);
+      setIsError(false);
       const res = await fetch(`${location.origin}/api/login?password=${input}`);
       if (!res.ok) {
         throw Error(res.statusText);
@@ -26,11 +28,20 @@ export default function Login() {
       } else {
         setInput("");
         setIsError(true);
+        setErrMsg("wrong password.");
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
+      setIsError(true);
+      setErrMsg(`Something was wrong: ${error}`);
+    }
+  }
+
+  function handleKeyDown(event: any) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleLogin();
     }
   }
 
@@ -40,12 +51,13 @@ export default function Login() {
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="mt-5 mb-1 w-full rounded-md border-2 border-gray-300 p-3 shadow-sm focus:border-black focus:outline-0 dark:border-gray-700 dark:bg-slate-900 dark:focus:border-gray-600"
+          className="mb-1 mt-5 w-full rounded-md border-2 border-gray-300 p-3 shadow-sm focus:border-black focus:outline-0 dark:border-gray-700 dark:bg-slate-900 dark:focus:border-gray-600"
           placeholder={"Ask me for the password. "}
           type="password"
+          onKeyDown={handleKeyDown}
         />
         <span className="text-sm font-bold text-red-500">
-          {isError ? <div>wrong password.</div> : ""}
+          {isError ? errMsg : ""}
         </span>
       </div>
       <button
@@ -55,7 +67,7 @@ export default function Login() {
         onClick={handleLogin}
         disabled={loading}
       >
-        GO
+        {loading ? "Waiting" : "GO"}
       </button>
     </div>
   );

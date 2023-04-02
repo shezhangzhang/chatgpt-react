@@ -49,7 +49,6 @@ export default function Home() {
           router.replace("/login");
         }
       } catch (error) {
-        console.log(error);
         router.replace("/login");
       }
     }

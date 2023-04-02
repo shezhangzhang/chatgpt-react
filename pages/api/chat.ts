@@ -1,20 +1,30 @@
-import { NextRequest } from "next/server";
-import { Stream } from "../../utils/stream";
+import { NextRequest, NextResponse } from "next/server";
+import { ChatGPTMessage, Stream } from "../../utils/stream";
 
 export const config = {
   runtime: "edge",
 };
 
-export default async function handler(req: NextRequest) {
+interface Body {
+  messsages: ChatGPTMessage[];
+  password: string;
+}
+
+export default async function handler(req: NextRequest, res: NextResponse) {
   if (req.method !== "POST") {
     return new Response("Method Not Allowed", { status: 405 });
   }
 
-  const messsages = await req.json();
+  const body: Body = await req.json();
+
+  const passwords = process.env.PASSWORD?.split(",");
+  if (!body?.password || !passwords || !passwords.includes(body.password)) {
+    return new Response("Not Login", { status: 401 });
+  }
 
   const payload = {
     model: process.env.MODEL || "gpt-3.5-turbo",
-    messages: messsages,
+    messages: body.messsages,
     stream: true,
   };
 

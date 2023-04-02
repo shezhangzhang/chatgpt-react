@@ -5,7 +5,7 @@ import {
 } from "eventsource-parser";
 import * as Sentry from "@sentry/nextjs";
 
-export type ChatGPTAgent = "user" | "system";
+export type ChatGPTAgent = "user" | "system" | "assistant";
 
 export interface ChatGPTMessage {
   role: ChatGPTAgent;
